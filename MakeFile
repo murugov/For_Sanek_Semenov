@@ -1,0 +1,4 @@
+all:
+	gcc quadratka.c test.c equation.c enter_output.c is_zero.c tests_from_txt.c answers_from_txt.c enter_test_input_answer.c length_dynamic_array.c -o output
+	.\output.exet
+	
