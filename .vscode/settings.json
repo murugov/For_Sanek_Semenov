@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "assert.h": "c",
+        "square_solver.h": "c",
+        "stdout.h": "c",
+        "unit_test.h": "c",
+        "is_zero.h": "c",
+        "my_assert.h": "c",
+        "my_realloc.h": "c"
+    }
+}

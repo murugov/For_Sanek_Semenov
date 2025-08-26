@@ -1,4 +1,4 @@
-#include "headers\is_zero.h"
+#include "headers/is_zero.h"
 
 int is_zero(double x)
 {

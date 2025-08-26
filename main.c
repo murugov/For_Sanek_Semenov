@@ -1,6 +1,6 @@
-#include "headers\unit_test.h"
-#include "headers\stdout.h"
-#include "headers\square_solver.h"
+#include "headers/unit_test.h"
+#include "headers/stdout.h"
+#include "headers/square_solver.h"
 
 int main(void)
 {
@@ -8,7 +8,7 @@ int main(void)
     printf("-----------------------------------------------------------------\n");
     printf(ANSI_COLOR_BLUE "###    Enter 't' for tester mode and 'u' for user mode    ###\n" ANSI_COLOR_RESET);
     
-    char mode = 0;
+    int mode = 0;
 
     while (VERDICT_WARNING)
      {

@@ -9,6 +9,7 @@
 #include "struct_parametrs.h"
 #include "colors.h"
 
+
 double discriminat(struct parametrs* library);
 int quadro_equation(struct parametrs* library);
 
