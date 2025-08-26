@@ -72,33 +72,51 @@ int comparison(struct parametrs* ptr_input, struct test_library* ptr_answer, int
 
 void warning_output(struct parametrs* ptr_input, struct test_library* ptr_answer, int res_test)
 {
-    printf(ANSI_COLOR_RED"ERROR IN TEST:\n");
+    printf(ANSI_COLOR_RED "-----------------------------------------------------------------\n");
+    printf("ERROR IN TEST:\n");
     printf("PROGRAM OUTPUT: x1 = %g, x2 = %g, NOR = %d\n", ptr_input->x1, ptr_input->x2, res_test);
-    printf("CORRECT OUTPUT: x1 = %g, x2 = %g, NOR = %d" ANSI_COLOR_RESET "\n", ptr_answer->x1, ptr_answer->x2, ptr_answer->result);
+    printf("CORRECT OUTPUT: x1 = %g, x2 = %g, NOR = %d\n-----------------------------------------------------------------" ANSI_COLOR_RESET "\n", ptr_answer->x1, ptr_answer->x2, ptr_answer->result);
 }
 
 void test()
 {
+    int length_input = 0;
+    int length_answer = 0;
+    int length_dynamic_array = 0;
+
+    double* ptr_data_input = tests_from_txt(&length_input);
+
+    double* ptr_data_answer = answers_from_txt(&length_answer);
+
+    length_input /= 5;
+    length_answer /= 3;
+
+    if(length_input != length_answer)
+    {
+        printf(ANSI_COLOR_RED "-----------------------------------------------------------------\n");
+        printf("ERROR:\n" ANSI_COLOR_RESET);
+        printf(ANSI_COLOR_RED "Size of \"test_input.txt\" != size of \"test_answer.txt\"\n");
+        printf("-----------------------------------------------------------------\n\n" ANSI_COLOR_RESET);
+        exit(1);
+    }
+
+    length_dynamic_array = length_input;
+
+
+    struct parametrs test_input[length_dynamic_array];
+    struct test_library test_answer[length_dynamic_array];
+
+    enter_test_input(ptr_data_input, test_input, length_dynamic_array);
+    enter_test_answer(ptr_data_answer, test_answer, length_dynamic_array);
     
 
-    double* ptr_data_input = tests_from_txt();
-    double* ptr_data_answer = answers_from_txt();
-
-    int length = length_dynamic_array() / 5;
-
-
-    struct parametrs test_input[length];
-    struct test_library test_answer[length];
-
-    enter_test_input(ptr_data_input, test_input, length);
-    enter_test_answer(ptr_data_answer, test_answer, length);
-    
-
-    for(int i = 0; i < length; ++i)
+    for(int i = 0; i < length_dynamic_array; ++i)
     {
         int res_test = quadro_equation(&test_input[i]);
         number_of_test_with_error(&test_input[i], &test_answer[i], res_test);
     }
+
+    printf("-----------------------------------------------------------------\n\n");
 
     free(ptr_data_input);
     free(ptr_data_answer);

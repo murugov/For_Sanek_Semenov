@@ -8,15 +8,20 @@ void enter(struct parametrs* ptr_stucture)
     int checker = scanf("%lg %lg %lg", &ptr_stucture->a, &ptr_stucture->b, &ptr_stucture->c);
     printf("" ANSI_COLOR_RESET);
 
-    while(checker != 3)
+    while(checker != 3 || getchar() != '\n')
     {
         printf(ANSI_COLOR_YELLOW "");
         while(getchar() != '\n');
         printf("" ANSI_COLOR_RESET);
 
         printf(ANSI_COLOR_RED "Invalid input format\n" ANSI_COLOR_RESET);
+
+        printf(ANSI_COLOR_YELLOW "");
         checker = scanf("%lg %lg %lg", &ptr_stucture->a, &ptr_stucture->b, &ptr_stucture->c);
+        printf("" ANSI_COLOR_RESET);
     }
+
+    printf("\n");
 
     printf("" ANSI_COLOR_RESET);
 }
@@ -29,21 +34,26 @@ void output(int res, struct parametrs* ptr_stucture)
     {
         case NO_ROOTS:
             printf(ANSI_COLOR_MAGENTA "No roots\n" ANSI_COLOR_RESET);
+            printf("-----------------------------------------------------------------\n\n");
             break;
         case ONE_ROOT:
             printf(ANSI_COLOR_MAGENTA "One root:\n");
             printf("x = %lg" ANSI_COLOR_RESET "\n", ptr_stucture->x1);
+            printf("-----------------------------------------------------------------\n\n");
             break;
         case TWO_ROOTS:
             printf(ANSI_COLOR_MAGENTA "Two roots:\n");
             printf("x1 = %lg\n", ptr_stucture->x1);
             printf("x2 = %lg" ANSI_COLOR_RESET "\n", ptr_stucture->x2);
+            printf("-----------------------------------------------------------------\n\n");
             break;
         case IMAGINARY_ROOTS:
             printf(ANSI_COLOR_MAGENTA "Only imaginary roots\n" ANSI_COLOR_RESET);
+            printf("-----------------------------------------------------------------\n\n");
             break;
         case INFINITY_ROOTS:
             printf(ANSI_COLOR_MAGENTA "Infinite number of roots\n" ANSI_COLOR_RESET);
+            printf("-----------------------------------------------------------------\n\n");
             break;
     }
 }

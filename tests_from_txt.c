@@ -16,11 +16,11 @@
 //     return ptr_data;
 // }
 
-void* tests_from_txt()
+void* tests_from_txt(int* ptr_length)
 {
     int capacity = 5;
-    int length = 0;
     double* ptr_data = (double *)calloc(capacity, sizeof(double));
+
     if (!ptr_data) {
         exit(1);
     }
@@ -33,16 +33,16 @@ void* tests_from_txt()
 
     while(NOT_END_FILE)
     {
-        if (length == capacity) 
+        if (*ptr_length == capacity) 
         {
+            // ptr_data = my_realloc(ptr_data, ptr_length, &capacity);
             capacity *= 2;
             ptr_data = (double *)realloc(ptr_data, sizeof(double) * capacity);
         }
 
-
-        if (fscanf(ptr_file, "%lg ", &ptr_data[length]) == 1)
+        if (fscanf(ptr_file, "%lg ", &ptr_data[*ptr_length]) == 1)
         {
-            length++;
+            (*ptr_length)++;
         }
         else
         {

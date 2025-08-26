@@ -1,41 +1,26 @@
 #include "headers\unit_test.h"
 
-// //fseek
+// void* my_realloc(double* ptr_data, int* ptr_length, int* ptr_capacity)
+// {
+//     *ptr_capacity = *ptr_capacity * 2;
+//     double* ptr_list = (double *)calloc(*ptr_capacity, sizeof(double));
+//     if(ptr_list == NULL)
+//         return ptr_data;
+        
+//     for(int i = 0;i < *ptr_length; ++i)
+//         ptr_list[i] = ptr_data[i];
+        
+//         free(ptr_data);
+//         ptr_data = ptr_list;
+        
+//     return ptr_data;
+// }
 
-// +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---
-// |   |33 | 2 | 1 | 0 | 0 | 2 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |   |   |   |   |   |   |   |   |  
-// +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---
-//     \__/ \_____________/ \_____________________________/                                   
-//      c    i               l                                                                 
-//     \__________________________________________________/                                    
-//      st                                                                                     
-//                                                                                             
-// +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---
-// |   |33 | ? | ? | ? | ? | ? | ? | ? | 2 | 1 | ? | ? | ? | ? | ? | ? | 2 | 1 | ? | ? | ? |  
-// +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---
-//     \______________________________/ \_____________________________/ \___________________....
-//      c                                i                               l                     
-//     \____________________________________________________________________________________....
-//      st                                                                                     
-
-
-// struct st
-//     {
-//     char c; = '!'
-//     int  i; = 258 = 256*1 + 2
-//     long long l; = 258
-//     };
-
-// char* pc = &st.c;
-// pc++;
-
-// fseek(my_file)
-
-void* answers_from_txt()
+void* answers_from_txt(int* ptr_length)
 {
     int capacity = 5;
-    int length = 0;
     double* ptr_data = (double *)calloc(capacity, sizeof(double));
+
     if (!ptr_data) {
         exit(1);
     }
@@ -48,16 +33,16 @@ void* answers_from_txt()
 
     while(NOT_END_FILE)
     {
-        if (length == capacity) 
+        if (*ptr_length == capacity) 
         {
+            // ptr_data = my_realloc(ptr_data, ptr_length, &capacity);
             capacity *= 2;
             ptr_data = (double *)realloc(ptr_data, sizeof(double) * capacity);
         }
 
-
-        if (fscanf(ptr_file, "%lg ", ptr_data + length) == 1)
+        if (fscanf(ptr_file, "%lg ", &ptr_data[*ptr_length]) == 1)
         {
-            length++;
+            (*ptr_length)++;
         }
         else
         {

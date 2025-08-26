@@ -4,7 +4,9 @@
 
 int main(void)
 {
-    printf(ANSI_COLOR_BLUE "###    Enter 't' for debugger mode and 'u' for user mode    ###\n" ANSI_COLOR_RESET);
+    printf("\n");
+    printf("-----------------------------------------------------------------\n");
+    printf(ANSI_COLOR_BLUE "###    Enter 't' for tester mode and 'u' for user mode    ###\n" ANSI_COLOR_RESET);
     
     char mode = 0;
 
@@ -24,10 +26,12 @@ int main(void)
         printf(ANSI_COLOR_RED "Invalid input format" ANSI_COLOR_RESET "\n");
     }
 
+    printf("\n");
+
     if(mode == 'u')
     {
         printf(ANSI_COLOR_BLUE "###    This is a quadratic equation calculator              ###\n");
-        printf("###    Enter a, b, c separated by space                     ###" ANSI_COLOR_RESET "\n");
+        printf("###    Enter a, b, c separated by space or by enter         ###" ANSI_COLOR_RESET "\n");
 
         struct parametrs library = {NAN, NAN, NAN, NAN, NAN};
         
