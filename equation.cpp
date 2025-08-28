@@ -6,7 +6,7 @@
 double discriminat(struct parametrs* ptr_structure)
 {
     //assert(ptr_stucture != NULL);
-    MY_ASSERT(ptr_structure);
+    MY_ASSERT(ptr_structure != NULL);
 
     double D = ptr_structure->b * ptr_structure->b - 4 * ptr_structure->a * ptr_structure->c;
     return D;
@@ -15,7 +15,7 @@ double discriminat(struct parametrs* ptr_structure)
 int quadro_equation(struct parametrs* ptr_structure)
 {
     //assert(ptr_structure != NULL);
-    MY_ASSERT(ptr_structure);
+    MY_ASSERT(ptr_structure != NULL);
 
     if(is_zero(ptr_structure->a)) 
     {

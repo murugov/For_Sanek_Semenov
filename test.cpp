@@ -103,8 +103,8 @@ void test()
 
     length_dynamic_array = length_input;
 
-    struct parametrs* ptr_test_input = (struct parametrs *)calloc(length_dynamic_array, sizeof(double));
-    struct test_library* ptr_test_answer = (struct test_library *)calloc(length_dynamic_array, sizeof(double));
+    struct parametrs* ptr_test_input = (struct parametrs *)calloc(length_dynamic_array, sizeof(struct parametrs));
+    struct test_library* ptr_test_answer = (struct test_library *)calloc(length_dynamic_array, sizeof(struct test_library));
 
     enter_test_input(ptr_data_input, ptr_test_input, length_dynamic_array);
     enter_test_answer(ptr_data_answer, ptr_test_answer, length_dynamic_array);
@@ -120,4 +120,6 @@ void test()
 
     free(ptr_data_input);
     free(ptr_data_answer);
+    free(ptr_test_input);
+    free(ptr_test_answer);
 }

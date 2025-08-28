@@ -4,7 +4,7 @@
 void enter(struct parametrs* ptr_structure)
 {
     //assert(ptr_structure != NULL)
-    MY_ASSERT(ptr_structure);
+    MY_ASSERT(ptr_structure != NULL);
 
     printf(ANSI_COLOR_YELLOW "");
     int checker = scanf("%lg %lg %lg", &ptr_structure->a, &ptr_structure->b, &ptr_structure->c);
@@ -31,7 +31,7 @@ void enter(struct parametrs* ptr_structure)
 void output(int res, struct parametrs* ptr_structure)
 {
     //assert(ptr_structure != NULL);
-    MY_ASSERT(ptr_structure);
+    MY_ASSERT(ptr_structure != NULL);
 
     switch (res)
     {
