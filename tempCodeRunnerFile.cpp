@@ -1,1 +1,0 @@
-NAN, NAN, NAN, NAN, NAN

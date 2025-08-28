@@ -1,42 +1,42 @@
 #include "headers/unit_test.h"
-#include "headers/my_realloc.h"
-#include "headers/is_zero.h"
 
-double* tests_from_txt(size_t* ptr_length)
+void* tests_from_txt(size_t* ptr_length)
 {
-    size_t capacity = 5;
-    double* ptr_data = (double *)calloc(capacity, sizeof(double));
-
-    if (!ptr_data) {
-        exit(1);
-    }
-
-    FILE* ptr_file = fopen("tests/test_input.txt", "r");
-    if(ptr_file == NULL) {
+    FILE* ptr_file = fopen("tests/tests.txt", "r");
+    if(ptr_file == NULL)
+    {
         perror("test_input.txt");
         exit(1);
     }
 
-    while(NOT_END_FILE)
-    {
-        if (*ptr_length == capacity) 
-        {
-            ptr_data = my_realloc(ptr_data, ptr_length, &capacity);
-            //capacity *= 2;
-            //ptr_data = (double *)realloc(ptr_data, sizeof(double) * capacity);
-        }
+    char c = fgetc(ptr_file);
 
-        if (fscanf(ptr_file, "%lg ", &ptr_data[*ptr_length]) == 1)
-        {
+    while (c != EOF) {
+        if (c == '\n') {
             (*ptr_length)++;
         }
-        else
-        {
-            break;
-        }
+        c = fgetc(ptr_file);
     }
- 
+
+    fseek(ptr_file, 0, SEEK_SET);
+
+    (*ptr_length)++;
+
+    struct parametrs* ptr_test = (struct parametrs*)calloc(*ptr_length, sizeof(struct parametrs));
+
+    if (ptr_test == NULL)
+    {
+        perror("ptr_data");
+        exit(1);
+    }
+
+    size_t i = 0;
+
+    while(fscanf(ptr_file, "%lg %lg %lg %lg %lg %lg %lg %lg ", &ptr_test[i].a, &ptr_test[i].b, &ptr_test[i].c,
+            &ptr_test[i].x1, &ptr_test[i].x2, &ptr_test[i].ans_x1, &ptr_test[i].ans_x2, &ptr_test[i].result) == 8 && i < *ptr_length)
+            i++;
+     
     fclose(ptr_file);
  
-    return ptr_data;
+    return ptr_test;
 }
