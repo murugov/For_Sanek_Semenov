@@ -1,6 +1,6 @@
-#include "headers/is_zero.h"
-#include "headers/square_solver.h"
-#include "headers/my_assert.h"
+#include "is_zero.h"
+#include "square_solver.h"
+#include "my_assert.h"
 #include <math.h>
 
 double discriminat(struct parametrs* ptr_structure)
@@ -17,9 +17,9 @@ int quadro_equation(struct parametrs* ptr_structure)
     //assert(ptr_structure != NULL);
     MY_ASSERT(ptr_structure != NULL);
 
-    if(is_zero(ptr_structure->a)) 
+    if (is_zero(ptr_structure->a)) 
     {
-        if(is_zero(ptr_structure->b)) 
+        if (is_zero(ptr_structure->b)) 
             return (is_zero(ptr_structure->c)) ? INFINITY_ROOTS: NO_ROOTS;
         else {
             ptr_structure->x1 = -ptr_structure->c/ptr_structure->b;
@@ -29,9 +29,9 @@ int quadro_equation(struct parametrs* ptr_structure)
 
     double D = discriminat(ptr_structure);
 
-    if(is_zero(D))
+    if (is_zero(D))
     {
-        if(is_zero(ptr_structure->b))
+        if (is_zero(ptr_structure->b))
            ptr_structure->x1 = 0;
         else
             ptr_structure->x1 = -ptr_structure->b / (2 * ptr_structure->a);

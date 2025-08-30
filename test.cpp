@@ -1,5 +1,6 @@
-#include "headers/unit_test.h"
-#include "headers/is_zero.h"
+#include "unit_test.h"
+#include "is_zero.h"
+
 
 void number_of_test_with_error(struct parametrs* ptr_test, int res_test)
 {
@@ -21,17 +22,17 @@ void number_of_test_with_error(struct parametrs* ptr_test, int res_test)
 
 int comparison(struct parametrs* ptr_test, int res_test)
 {
-    if(is_zero(res_test - ptr_test->result))
+    if (is_zero(res_test - ptr_test->result))
     {
-        if(isnan(ptr_test->x1) && isnan(ptr_test->ans_x1))
+        if (isnan(ptr_test->x1) && isnan(ptr_test->ans_x1))
         {
-            if(isnan(ptr_test->x2) && isnan(ptr_test->ans_x2))
+            if (isnan(ptr_test->x2) && isnan(ptr_test->ans_x2))
                 return VERDICT_OK;
             else
             {
-                if(!isnan(ptr_test->x2) && !isnan(ptr_test->ans_x2))
+                if (!isnan(ptr_test->x2) && !isnan(ptr_test->ans_x2))
                 {
-                    if(is_zero(ptr_test->x2 - ptr_test->ans_x2))
+                    if (is_zero(ptr_test->x2 - ptr_test->ans_x2))
                         return VERDICT_OK;
 
                     return VERDICT_WARNING;
@@ -42,17 +43,17 @@ int comparison(struct parametrs* ptr_test, int res_test)
         }
         else
         {
-            if(!isnan(ptr_test->x1) && !isnan(ptr_test->ans_x1))
+            if (!isnan(ptr_test->x1) && !isnan(ptr_test->ans_x1))
             {
-                if(is_zero(ptr_test->x1 - ptr_test->ans_x1))
+                if (is_zero(ptr_test->x1 - ptr_test->ans_x1))
                 {
-                    if(isnan(ptr_test->x2) && isnan(ptr_test->ans_x2))
+                    if (isnan(ptr_test->x2) && isnan(ptr_test->ans_x2))
                         return VERDICT_OK;
                     else
                     {
-                        if(!isnan(ptr_test->x2) && !isnan(ptr_test->ans_x2))
+                        if (!isnan(ptr_test->x2) && !isnan(ptr_test->ans_x2))
                         {
-                            if(is_zero(ptr_test->x2 - ptr_test->ans_x2))
+                            if (is_zero(ptr_test->x2 - ptr_test->ans_x2))
                                 return VERDICT_OK;
                             
                             return VERDICT_WARNING;
@@ -86,7 +87,7 @@ void test()
 
     struct parametrs* ptr_test = (struct parametrs*)tests_from_txt(&length);    
 
-    for(size_t i = 0; i < length; ++i)
+    for (size_t i = 0; i < length; ++i)
     {
         int res_test = quadro_equation(&ptr_test[i]);
         number_of_test_with_error(&ptr_test[i], res_test);

@@ -1,5 +1,6 @@
-#include "headers/stdout.h"
-#include "headers/my_assert.h"
+#include "stdout.h"
+#include "my_assert.h"
+#include "square_solver.h"
 
 void enter(struct parametrs* ptr_structure)
 {
@@ -10,10 +11,10 @@ void enter(struct parametrs* ptr_structure)
     int checker = scanf("%lg %lg %lg", &ptr_structure->a, &ptr_structure->b, &ptr_structure->c);
     printf("" ANSI_COLOR_RESET);
 
-    while(checker != 3 || getchar() != '\n')
+    while (checker != 3 || getchar() != '\n')
     {
         printf(ANSI_COLOR_YELLOW "");
-        while(getchar() != '\n');
+        while (getchar() != '\n');
         printf("" ANSI_COLOR_RESET);
 
         printf(ANSI_COLOR_RED "Invalid input format\n" ANSI_COLOR_RESET);
@@ -23,9 +24,17 @@ void enter(struct parametrs* ptr_structure)
         printf("" ANSI_COLOR_RESET);
     }
 
-    printf("\n");
+    printf("\n" ANSI_COLOR_RESET);
 
-    printf("" ANSI_COLOR_RESET);
+    double D = discriminat(ptr_structure);
+    
+    printf(ANSI_COLOR_MAGENTA "Solution:\n");
+    if (D == 0)
+        printf("D = b^2 - 4*a*c = %g^2 - 4*%g*%g = %g" ANSI_COLOR_RESET "\n\n",
+            ptr_structure->b, ptr_structure->a, ptr_structure->c, D);
+    else
+        printf("D = b^2 - 4*a*c = %g^2 - 4*%g*%g = %g %c 0" ANSI_COLOR_RESET "\n\n",
+            ptr_structure->b, ptr_structure->a, ptr_structure->c, D, (D > 0) ? '>': '<');
 }
 
 void output(int res, struct parametrs* ptr_structure)
